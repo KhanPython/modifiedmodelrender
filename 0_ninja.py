@@ -1,5 +1,8 @@
 from pathlib import Path
+import subprocess
+import time
 
+EXEC_PATH = Path("ninja.exe")
 CONTENT_PATH = Path("content/")
 # Links to images within an OBJ's material. We want to re-render if one changes.
 # These are the tags Roblox exports right now. There are others in common use, notably for PBR.
@@ -35,6 +38,15 @@ def path_str(x: Path):
     # Changing path delimiters will invoke a rebuild.
     return str(x).replace("\\", "/")
 
+# Function to run the executable.
+def run_executable(exec_path):
+    try:
+        # Introduce a delay to allow the file system to release any locks
+        time.sleep(2)  # Wait for 2 seconds
+        subprocess.run(exec_path, check=True)
+        print(f"Executable at {exec_path} ran successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error running the executable: {e}")
 
 with open("build.ninja", "w") as out:
     out.write("blenderfile = template.blend\n")
@@ -94,3 +106,6 @@ with open("build.ninja", "w") as out:
     out.write("\n")
 
     out.write("\n")
+
+run_executable(EXEC_PATH)
+
