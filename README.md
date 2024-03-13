@@ -25,5 +25,3 @@ Re-generate build commands if you've added or removed models. Re-run the build a
 
 ## Attribution
 This is a modification of an existing repository: https://github.com/OttoHatt/modelrender
-
-The default `template.blend` file includes [brown_photostudio_02](https://polyhaven.com/a/brown_photostudio_02) from [PolyHaven](https://polyhaven.com/), licensed under CC0.

@@ -42,7 +42,7 @@ def path_str(x: Path):
 def run_executable(exec_path):
     try:
         # Introduce a delay to allow the file system to release any locks
-        time.sleep(2)  # Wait for 2 seconds
+        time.sleep(1)  # Wait for 1 seconds
         subprocess.run(exec_path, check=True)
         print(f"Executable at {exec_path} ran successfully.")
     except subprocess.CalledProcessError as e:
